@@ -1,0 +1,47 @@
+.afterSlider {
+  width: 21.7em;
+  font-size: small;
+}
+
+.bestSeller {
+  width: 13em;
+}
+
+.betterSellerContainer {
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.bestSellerButton {
+  position: absolute;
+  top: 8em;
+  width: 100%;
+}
+
+.bestSellerWishButton {
+  position: absolute;
+  top: 0.5em;
+  left: 0em;
+}
+
+.bestSellerText:hover {
+  transition: all 0.5s;
+  color: skyblue !important;
+}
+
+.bestSellerImage {
+  transition: transform 2s ease;
+}
+
+.bestSellerImage:hover {
+  transform: scale(1.2);
+}
+
+.categoryPage {
+  background-color: #002745 !important;
+  padding: 0.4em 0;
+}

@@ -1,0 +1,22 @@
+.shippingLeft {
+  width: 40em;
+}
+
+.shippingRight {
+  width: 39em;
+  background-color: #f5f5f5;
+}
+
+.shippingLeftMargin {
+  padding: 3em 5em !important;
+}
+
+.floatingInputCss {
+  color: black !important;
+  top: 0px !important;
+  font-size: 14px !important;
+}
+
+.floatingForm {
+  position: relative;
+}

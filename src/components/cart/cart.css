@@ -1,0 +1,41 @@
+.cartPage {
+  background-color: #002745 !important;
+  padding: 1em 0;
+}
+
+.columnWidthFix {
+  width: 45%;
+}
+
+.cartDeleteButton {
+  background-color: transparent;
+  border: none;
+}
+
+.numberImput {
+  width: 3em;
+  text-align: center;
+}
+
+.numberInputButton {
+  border: none;
+  background-color: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.addToCartBtn {
+  color: white !important;
+  background-color: #002745 !important;
+  margin-left: 2em;
+  width: 75%;
+}
+
+.addToCartBtn:hover {
+  transition: all 2s;
+  background-color: #333333 !important;
+}

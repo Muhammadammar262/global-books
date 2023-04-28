@@ -1,0 +1,96 @@
+.afterSlider {
+  width: 21.7em;
+  font-size: small;
+}
+
+.bestSeller {
+  width: 10.5em;
+}
+
+.betterSellerContainer {
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.bestSellerButton {
+  position: absolute;
+  top: 5.5em;
+  width: 100%;
+}
+
+.bestSellerWishButton {
+  position: absolute;
+  top: 0.5em;
+  left: 0em;
+}
+
+.bestSellerText:hover {
+  transition: all 0.5s;
+  color: skyblue !important;
+}
+
+.bestSellerImage {
+  transition: transform 2s ease;
+}
+
+.bestSellerImage:hover {
+  transform: scale(1.2);
+}
+
+.afterNewArrival {
+  width: 34.5em;
+}
+
+.afterNewArrival2 {
+  width: 22.8em;
+}
+
+.afterNewArrival2Button {
+  background-color: #002745 !important;
+  color: white !important;
+  width: 50%;
+  height: 3em;
+}
+
+.afterNewArrival2Button:hover {
+  background-color: #000000 !important ;
+}
+
+.afterNewArrival2Button2 {
+  background-color: #002745 !important;
+  color: white !important;
+  width: 50%;
+  height: 3em;
+}
+
+.afterNewArrival2Button2:hover {
+  background-color: #333333 !important ;
+}
+
+.aboutUsPic {
+  width: 30em;
+}
+
+.aboutUs {
+  width: 38em;
+}
+
+@media screen and (max-width: 1199.5px) {
+  .afterNewArrival {
+    width: 28.5em;
+  }
+  .afterNewArrival2 {
+    width: 18.8em;
+  }
+  .aboutUsPic {
+    width: 26em;
+  }
+
+  .aboutUs {
+    width: 30em;
+  }
+}
