@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function DeleteProduct() {
-  const [tableData, setTableData] = useState([
-    {
-      id: 1,
-      ProductName:
-        "The Subtle Art Of Not Giving A F*Ck - (Mass-Market) - (Budget-Print)",
-      ProductPrice: "Rs.395.00",
-      ProductDescription:
-        "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be positive all the time so that we can truly become better,happier people.",
-      ProductCategory: "English Books",
-    },
-    {
-      id: 1,
-      ProductName:
-        "The Subtle Art Of Not Giving A F*Ck - (Mass-Market) - (Budget-Print)",
-      ProductPrice: "Rs.395.00",
-      ProductDescription:
-        "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be positive all the time so that we can truly become better,happier people.",
-      ProductCategory: "English Books",
-    },
-  ]);
+  const [tableData, setTableData] = useState([]);
+
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost/project/view.php");
+    setTableData(result.data.phpresult);
+    console.log(result.data);
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (e) => {
@@ -28,63 +20,67 @@ function DeleteProduct() {
   };
   const filteredData = tableData.filter(
     (item) =>
-      item.ProductName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.ProductCategory.toLowerCase().includes(searchTerm.toLowerCase())
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const handleDelete = (id) => {
-    const newData = tableData.filter((item) => item.id !== id);
-    setTableData(newData);
-  };
   return (
     <div className="container">
-      <div className="h2 text-center mt-2">Delete PRODUCTS</div>
-      <div class="row g-3 align-items-center">
-        <div class="col-auto">
-          <label for="inputPassword6" class="col-form-label">
+      <div className="h2 text-center mt-2">DELETE BOOKS</div>
+      <div className="row g-3 align-items-center">
+        <div className="col-auto">
+          <label for="inputPassword6" className="col-form-label">
             Search
           </label>
         </div>
-        <div class="col-auto">
+        <div className="col-auto">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearch}
-            class="form-control"
+            className="form-control"
             aria-describedby="passwordHelpInline"
             placeholder="Search"
           />
         </div>
       </div>
-
       <div className="table-responsive">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Product Price</th>
-              <th scope="col">Product Description</th>
-              <th scope="col">Product Category</th>
-              <th scope="col">Delete</th>
+              <th scope="col" className="text-center">
+                ID
+              </th>
+              <th scope="col" className="text-center">
+                Book Name
+              </th>
+              <th scope="col" className="text-center">
+                Book Category
+              </th>
+              <th scope="col" className="text-center">
+                Book Author Name
+              </th>
+              <th scope="col" className="text-center">
+                Book Price
+              </th>
+              <th scope="col" className="text-center">
+                Book Year
+              </th>
+              <th scope="col" className="text-center">
+                Delete Book
+              </th>
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.ProductName}</td>
-                <td>{item.ProductPrice}</td>
-                <td>{item.ProductDescription}</td>
-                <td>{item.ProductCategory}</td>
-
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </button>
+            {filteredData.map((res) => (
+              <tr key={res.id}>
+                <td className="text-center">{res.id}</td>
+                <td className="text-center">{res.name}</td>
+                <td className="text-center">{res.category}</td>
+                <td className="text-center">{res.author}</td>
+                <td className="text-center">{res.price} PKR</td>
+                <td className="text-center">{res.year}</td>
+                <td className="text-center">
+                  <button className="btn btn-danger">Delete</button>
                 </td>
               </tr>
             ))}
