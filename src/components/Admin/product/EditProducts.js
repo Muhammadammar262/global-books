@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function EditProducts() {
   const [tableData, setTableData] = useState([]);
+  const navigate = useNavigate();
 
   const loadUsers = async () => {
     const result = await axios.get("http://localhost/project/view.php");
@@ -14,6 +15,10 @@ function EditProducts() {
   useEffect(() => {
     loadUsers();
   }, []);
+
+  const updateHandle = (id) => {
+    navigate("/producteditform", { state: id });
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (e) => {
@@ -48,26 +53,45 @@ function EditProducts() {
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Product Price</th>
-              <th scope="col">Product Description</th>
-              <th scope="col">Product Category</th>
-              <th scope="col">Update</th>
+              <th scope="col" className="text-center">
+                ID
+              </th>
+              <th scope="col" className="text-center">
+                Book Name
+              </th>
+              <th scope="col" className="text-center">
+                Book Category
+              </th>
+              <th scope="col" className="text-center">
+                Book Author Name
+              </th>
+              <th scope="col" className="text-center">
+                Book Price
+              </th>
+              <th scope="col" className="text-center">
+                Book Year
+              </th>
+              <th scope="col" className="text-center">
+                Edit Book Details
+              </th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((res) => (
               <tr key={res.id}>
-                <td>{res.id}</td>
-                <td>{res.name}</td>
-                <td>{res.price}</td>
-                <td>{res.description}</td>
-                <td>{res.category}</td>
-                <td>
-                  <Link to="/producteditform" className="btn btn-primary">
+                <td className="text-center">{res.id}</td>
+                <td className="text-center">{res.name}</td>
+                <td className="text-center">{res.category}</td>
+                <td className="text-center">{res.author}</td>
+                <td className="text-center">{res.price} PKR</td>
+                <td className="text-center">{res.year}</td>
+                <td className="text-center">
+                  <button
+                    onClick={() => updateHandle(res.id)}
+                    className="btn btn-primary"
+                  >
                     Update
-                  </Link>
+                  </button>
                 </td>
               </tr>
             ))}

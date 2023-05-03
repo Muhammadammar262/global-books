@@ -7,7 +7,20 @@ function DeleteProduct() {
   const loadUsers = async () => {
     const result = await axios.get("http://localhost/project/view.php");
     setTableData(result.data.phpresult);
-    console.log(result.data);
+  };
+
+  const deleteHandle = (id) => {
+    let fData = new FormData();
+    fData.append("dId", id);
+    console.log(fData);
+
+    axios({
+      method: "post",
+      url: "http://localhost/project/deleteBook.php",
+      data: fData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
+    });
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -80,7 +93,12 @@ function DeleteProduct() {
                 <td className="text-center">{res.price} PKR</td>
                 <td className="text-center">{res.year}</td>
                 <td className="text-center">
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteHandle(res.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

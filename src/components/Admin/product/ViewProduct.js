@@ -7,7 +7,6 @@ function ViewProduct() {
   const loadUsers = async () => {
     const result = await axios.get("http://localhost/project/view.php");
     setTableData(result.data.phpresult);
-    console.log(result.data);
   };
 
   useEffect(() => {

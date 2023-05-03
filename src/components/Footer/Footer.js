@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="border-top border-dark">
-      <div className="footer container my-4">
-        <div className="globalBooks">
+      <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 footer container-fluid px-3 mb-4">
+        <div className="col mt-4">
           <div className="h5">Global Books</div>
           <div className="mt-4 d-flex">
             <div className="mt-1 me-1">
@@ -33,7 +33,7 @@ function Footer() {
             +922138921597 +923431216775
           </div>
         </div>
-        <div className="company">
+        <div className="col mt-4">
           <div className="h5">Company</div>
           <div className="mt-4">
             <div>
@@ -78,7 +78,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="information">
+        <div className="col mt-4">
           <div className="h5">Information</div>
           <div className="mt-4">
             <div>
@@ -123,13 +123,13 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="newletter">
+        <div className="col mt-4">
           <div className="h5">Subscribe Our Newletter</div>
           <div class="input-group mb-3">
             <input
               type="text"
-              class="form-control border border-dark rounded-pill text-center"
-              placeholder="Your email address"
+              class="form-control border border-dark rounded-pill"
+              placeholder="Email"
             />
             <button class="btn rounded-pill newLetterInputButton" type="button">
               Subscribe
@@ -137,7 +137,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="my-4 border-top border-secondary container">
+      <div className="my-4 border-top border-secondary">
         <div className="mt-4 d-flex justify-content-center align-items-center">
           <div>
             <a href="/" className="footerIcon">

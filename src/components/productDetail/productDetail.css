@@ -90,3 +90,53 @@ input::-webkit-inner-spin-button {
 .bestSellerImage:hover {
   transform: scale(1.2);
 }
+
+/* after php */
+.card-img-css {
+  height: 20rem;
+  padding: 1rem;
+  transition: all ease 1s;
+  position: relative !important;
+}
+
+.card-img {
+  height: 100%;
+}
+
+.card-img-css:hover {
+  transform: scale(1.2);
+}
+
+.card {
+  height: 30rem !important;
+  transition: all ease 1s;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-link {
+  transition: all ease 1s;
+}
+
+.card-link:hover {
+  color: skyblue !important;
+}
+
+.button {
+  position: absolute;
+  top: 9rem;
+  right: 20%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card:hover .button {
+  opacity: 1;
+}
+
+.card-detail-mouse {
+  cursor: pointer;
+}

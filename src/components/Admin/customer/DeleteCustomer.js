@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function DeleteCustomer() {
-  const [tableData, setTableData] = useState([
-    {
-      Customerid: 1,
-      FirstName: "Muhammad",
-      LastName: "Ammar",
-      Email: "ammarpervaiz262@gmail.com",
-      address: "Faisalabad",
-      city: "Faisalabad",
-      phone: "03007200000",
-    },
-    {
-      Customerid: 2,
-      FirstName: "Muhammad",
-      LastName: "Ammar",
-      Email: "ammarpervaiz262@gmail.com",
-      address: "Faisalabad",
-      city: "Faisalabad",
-      phone: "03007200000",
-    },
-  ]);
+  const [tableData, setTableData] = useState([]);
+
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost/project/viewCustomer.php");
+    setTableData(result.data.phpresult);
+  };
+
+  const deleteHandle = (id) => {
+    let fData = new FormData();
+    fData.append("dId", id);
+    // console.log(fData);
+
+    axios({
+      method: "post",
+      url: "http://localhost/project/deleteCustomer.php",
+      data: fData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
+    });
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (e) => {
@@ -28,63 +33,65 @@ function DeleteCustomer() {
   };
   const filteredData = tableData.filter(
     (item) =>
-      item.FirstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.LastName.toLowerCase().includes(searchTerm.toLowerCase())
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const handleDelete = (id) => {
-    const newData = tableData.filter((item) => item.Customerid !== id);
-    setTableData(newData);
-  };
   return (
     <div className="container">
-      <div className="h2 my-3 text-center mt-2">Delete Customers</div>
-      <div class="row g-3 align-items-center">
-        <div class="col-auto">
-          <label for="inputPassword6" class="col-form-label">
+      <div className="h2 text-center mt-2">Delete Customer</div>
+      <div className="row g-3 align-items-center">
+        <div className="col-auto">
+          <label for="inputPassword6" className="col-form-label">
             Search
           </label>
         </div>
-        <div class="col-auto">
+        <div className="col-auto">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearch}
-            class="form-control"
+            className="form-control"
             aria-describedby="passwordHelpInline"
             placeholder="Search"
           />
         </div>
       </div>
       <div className="table-responsive">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
-              <th scope="col">Customer ID</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Address</th>
-              <th scope="col">City</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Delete</th>
+              <th scope="col" className="text-center">
+                ID
+              </th>
+              <th scope="col" className="text-center">
+                Name
+              </th>
+              <th scope="col" className="text-center">
+                Email
+              </th>
+              <th scope="col" className="text-center">
+                Password
+              </th>
+              <th scope="col" className="text-center">
+                Phone
+              </th>
+              <th scope="col" className="text-center">
+                Delete
+              </th>
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((item) => (
-              <tr key={item.Customerid}>
-                <td>{item.Customerid}</td>
-                <td>{item.FirstName}</td>
-                <td>{item.LastName}</td>
-                <td>{item.Email}</td>
-                <td>{item.address}</td>
-                <td>{item.city}</td>
-                <td>{item.phone}</td>
-
-                <td>
+            {filteredData.map((res) => (
+              <tr key={res.id}>
+                <td className="text-center">{res.id}</td>
+                <td className="text-center">{res.name}</td>
+                <td className="text-center">{res.email}</td>
+                <td className="text-center">{res.password}</td>
+                <td className="text-center">{res.phone}</td>
+                <td className="text-center">
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDelete(item.Customerid)}
+                    onClick={() => deleteHandle(res.id)}
                   >
                     Delete
                   </button>

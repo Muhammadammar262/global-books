@@ -7,10 +7,11 @@ import logo from "../../assests/navbar/logo.png";
 import "./navbarwebsite.css";
 
 import { BsFillPersonFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 
 function NavbarWebsite() {
+  const navigate = useNavigate();
   const [navOpen, setNavOpen] = useState(false);
   const [navOpen1, setNavOpen1] = useState(false);
   const [navOpen2, setNavOpen2] = useState(false);
@@ -25,6 +26,10 @@ function NavbarWebsite() {
       setUsername(user);
     }
   }, []);
+
+  const categorySubmit = (name) => {
+    navigate("/category", { state: name });
+  };
 
   function openNav() {
     setNavOpen(true);
@@ -109,21 +114,33 @@ function NavbarWebsite() {
           <BiArrowBack />
         </button>
 
-        <Link to="/category" className="sideNavLink">
+        <div
+          onClick={() => categorySubmit("Non-Fiction")}
+          className="sideNavLink"
+        >
           Non-Fiction
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div onClick={() => categorySubmit("Fiction")} className="sideNavLink">
           Fiction
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Local Books")}
+          className="sideNavLink"
+        >
           Local Books
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Children Books")}
+          className="sideNavLink"
+        >
           Children Books
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Free Book")}
+          className="sideNavLink"
+        >
           Free Book
-        </Link>
+        </div>
       </div>
 
       <div
@@ -134,22 +151,30 @@ function NavbarWebsite() {
         <button className="closebtn sideNavLink" onClick={() => closeNav2()}>
           <BiArrowBack />
         </button>
-
-        <Link to="/category" className="sideNavLink">
+        <div onClick={() => categorySubmit("Afsanay")} className="sideNavLink">
           Afsanay
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div onClick={() => categorySubmit("Poetry")} className="sideNavLink">
           Poetry
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Safarnamal")}
+          className="sideNavLink"
+        >
           Safarnamal
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Urdu Biography")}
+          className="sideNavLink"
+        >
           Urdu Biography
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Urdu Adab")}
+          className="sideNavLink"
+        >
           Urdu Adab
-        </Link>
+        </div>
       </div>
 
       <div
@@ -160,22 +185,33 @@ function NavbarWebsite() {
         <button className="closebtn sideNavLink" onClick={() => closeNav3()}>
           <BiArrowBack />
         </button>
-
-        <Link to="/category" className="sideNavLink">
+        <div onClick={() => categorySubmit("Urdu PDF")} className="sideNavLink">
           Urdu PDF
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("English PDF")}
+          className="sideNavLink"
+        >
           English PDF
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Children PDF")}
+          className="sideNavLink"
+        >
           Children PDF
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Medical PDF")}
+          className="sideNavLink"
+        >
           Medical PDF
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("School PDF")}
+          className="sideNavLink"
+        >
           School PDF
-        </Link>
+        </div>
       </div>
 
       <div
@@ -186,13 +222,18 @@ function NavbarWebsite() {
         <button className="closebtn sideNavLink" onClick={() => closeNav4()}>
           <BiArrowBack />
         </button>
-
-        <Link to="/category" className="sideNavLink">
+        <div
+          onClick={() => categorySubmit("Address Books")}
+          className="sideNavLink"
+        >
           Address Books
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Spiral Notebook")}
+          className="sideNavLink"
+        >
           Spiral Notebook
-        </Link>
+        </div>
       </div>
 
       <div
@@ -203,22 +244,33 @@ function NavbarWebsite() {
         <button className="closebtn sideNavLink" onClick={() => closeNav5()}>
           <BiArrowBack />
         </button>
-
-        <Link to="/category" className="sideNavLink">
+        <div
+          onClick={() => categorySubmit("Stationary")}
+          className="sideNavLink"
+        >
           Stationary
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Office Supplies")}
+          className="sideNavLink"
+        >
           Office Supplies
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Book Marks")}
+          className="sideNavLink"
+        >
           Book Marks
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div
+          onClick={() => categorySubmit("Decorative")}
+          className="sideNavLink"
+        >
           Decorative
-        </Link>
-        <Link to="/category" className="sideNavLink">
+        </div>
+        <div onClick={() => categorySubmit("Mugs")} className="sideNavLink">
           Mugs
-        </Link>
+        </div>
       </div>
       <Navbar bg="light" expand="lg">
         <Container>
