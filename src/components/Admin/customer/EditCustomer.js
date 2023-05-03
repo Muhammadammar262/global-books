@@ -27,7 +27,7 @@ function EditCustomer() {
   const filteredData = tableData.filter(
     (item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.category.toLowerCase().includes(searchTerm.toLowerCase())
+      item.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
     <div className="container">

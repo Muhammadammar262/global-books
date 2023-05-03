@@ -45,3 +45,7 @@
   background-color: #002745 !important;
   padding: 0.4em 0;
 }
+
+.card-height {
+  height: 33rem !important;
+}

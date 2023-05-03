@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import "../cart/cart.css";
 import cartImg from "../../assests/cart/cart.png";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useLayoutEffect } from "react";
 
 function Cart() {
   const [count, setCount] = useState(1);
-  const location = useLocation();
-  const data = location.state;
 
   const [tableData, setTableData] = useState([]);
 
   const loadUsers1 = async () => {
-    const result = await axios.get("http://localhost/project/viewCart.php");
+    const result = await axios.get(
+      `http://localhost/project/viewCart.php?id=${sessionStorage.getItem("id")}`
+    );
     setTableData(result.data.phpresult);
   };
 
@@ -60,14 +60,22 @@ function Cart() {
   return (
     <div className="mb-5">
       <div className="h4 text-center text-white cartPage">SHOPPING CART</div>
-      <div className="container">
+      <div className="container table-responsive">
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">PRODUCT</th>
-              <th scope="col">PRICE</th>
-              <th scope="col">QUANTITY</th>
-              <th scope="col">TOTAL</th>
+              <th scope="col" className="text-center">
+                PRODUCT
+              </th>
+              <th scope="col" className="text-center">
+                PRICE
+              </th>
+              <th scope="col" className="text-center">
+                QUANTITY
+              </th>
+              <th scope="col" className="text-center">
+                TOTAL
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -76,12 +84,7 @@ function Cart() {
                 <td className="columnWidthFix">
                   <div className="d-flex">
                     <div>
-                      <img
-                        className=""
-                        src={`/pic/${res.image}`}
-                        alt=""
-                        width={"100em"}
-                      />
+                      <img src={`/pic/${res.image}`} alt="" width={"100em"} />
                     </div>
                     <div className="d-flex align-items-center ps-3">
                       <div>
@@ -98,13 +101,19 @@ function Cart() {
                   </div>
                 </td>
                 <td>
-                  <div className="mt-5 text-secondary">Rs.{res.price}.00</div>
+                  <div className="mt-5 text-secondary text-center">
+                    Rs.{res.price}.00
+                  </div>
                 </td>
                 <td>
-                  <div className="mt-5 text-secondary">{res.quantity}</div>
+                  <div className="mt-5 text-secondary text-center">
+                    {res.quantity}
+                  </div>
                 </td>
                 <td>
-                  <div className="mt-5">Rs.{count * res.price}.00</div>
+                  <div className="mt-5 text-center">
+                    Rs.{count * res.price}.00
+                  </div>
                 </td>
               </tr>
             ))}

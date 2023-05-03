@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ViewOrders() {
+function UserOrder() {
   const [tableData, setTableData] = useState([]);
   const [tableDataApprove, setTableDataApprove] = useState([]);
   const [tableDataReject, setTableDataReject] = useState([]);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost/project/viewOrderNew.php");
+    const result = await axios.get(
+      `http://localhost/project/viewUserOrderNew.php?id=${sessionStorage.getItem(
+        "id"
+      )}`
+    );
     setTableData(result.data.phpresult);
   };
   const loadUsers1 = async () => {
     const result = await axios.get(
-      "http://localhost/project/viewOrderApprove.php"
+      `http://localhost/project/viewUserOrderApprove.php?id=${sessionStorage.getItem(
+        "id"
+      )}`
     );
     setTableDataApprove(result.data.phpresult);
   };
   const loadUsers2 = async () => {
     const result = await axios.get(
-      "http://localhost/project/viewOrderReject.php"
+      `http://localhost/project/viewUserOrderReject.php?id=${sessionStorage.getItem(
+        "id"
+      )}`
     );
     setTableDataReject(result.data.phpresult);
   };
@@ -34,15 +42,18 @@ function ViewOrders() {
   };
   const filteredData = tableData.filter(
     (item) =>
-      item.id.includes(searchTerm) || item.product_id.includes(searchTerm)
+      item.id.includes(searchTerm) ||
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const filteredData1 = tableDataApprove.filter(
     (item) =>
-      item.id.includes(searchTerm) || item.product_id.includes(searchTerm)
+      item.id.includes(searchTerm) ||
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const filteredData2 = tableDataReject.filter(
     (item) =>
-      item.id.includes(searchTerm) || item.product_id.includes(searchTerm)
+      item.id.includes(searchTerm) ||
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -71,32 +82,24 @@ function ViewOrders() {
           <thead>
             <tr>
               <th scope="col">Order ID</th>
-              <th scope="col">Product ID</th>
-              <th scope="col">User ID</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Price</th>
               <th scope="col">Status</th>
-              <th scope="col">Email</th>
-              <th scope="col">Address</th>
-              <th scope="col">Phone</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.product_id}</td>
-                <td>{item.user_id}</td>
+                <td>
+                  <img src={`/pic/${item.image}`} alt="" width={"100em"} />
+                </td>
+                <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
                 <td>{item.status}</td>
-                <td>{item.email}</td>
-                <td>{item.address}</td>
-                <td>{item.phone}</td>
-                <td>{item.first}</td>
-                <td>{item.last}</td>
               </tr>
             ))}
           </tbody>
@@ -108,32 +111,24 @@ function ViewOrders() {
           <thead>
             <tr>
               <th scope="col">Order ID</th>
-              <th scope="col">Product ID</th>
-              <th scope="col">User ID</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Price</th>
               <th scope="col">Status</th>
-              <th scope="col">Email</th>
-              <th scope="col">Address</th>
-              <th scope="col">Phone</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
             </tr>
           </thead>
           <tbody>
             {filteredData1.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.product_id}</td>
-                <td>{item.user_id}</td>
+                <td>
+                  <img src={`/pic/${item.image}`} alt="" width={"100em"} />
+                </td>
+                <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
                 <td>{item.status}</td>
-                <td>{item.email}</td>
-                <td>{item.address}</td>
-                <td>{item.phone}</td>
-                <td>{item.first}</td>
-                <td>{item.last}</td>
               </tr>
             ))}
           </tbody>
@@ -145,32 +140,24 @@ function ViewOrders() {
           <thead>
             <tr>
               <th scope="col">Order ID</th>
-              <th scope="col">Product ID</th>
-              <th scope="col">User ID</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Product Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Price</th>
               <th scope="col">Status</th>
-              <th scope="col">Email</th>
-              <th scope="col">Address</th>
-              <th scope="col">Phone</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
             </tr>
           </thead>
           <tbody>
             {filteredData2.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.product_id}</td>
-                <td>{item.user_id}</td>
+                <td>
+                  <img src={`/pic/${item.image}`} alt="" width={"100em"} />
+                </td>
+                <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
                 <td>{item.status}</td>
-                <td>{item.email}</td>
-                <td>{item.address}</td>
-                <td>{item.phone}</td>
-                <td>{item.first}</td>
-                <td>{item.last}</td>
               </tr>
             ))}
           </tbody>
@@ -180,4 +167,4 @@ function ViewOrders() {
   );
 }
 
-export default ViewOrders;
+export default UserOrder;

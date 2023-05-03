@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { ImTruck } from "react-icons/im";
 import { MdPayment } from "react-icons/md";
 import "./aboutUs.css";
 
 function AboutUs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="bg-secondary text-white text-center d-flex justify-content-center align-items-center py-5">

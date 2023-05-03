@@ -1,4 +1,5 @@
 import LoginPage from "./components/loginPage/LoginPage";
+import LoginPageAdmin from "./components/loginPageAdmin/LoginPageAdmin";
 import SignUp from "./components/Signup/SignUp";
 import Category from "./components/categoryPage/Category";
 import ShippingPage from "./components/shipping/ShippingPage";
@@ -27,6 +28,8 @@ import HomePage from "./components/homePage/HomePage";
 import CartPage from "./components/cart/CartPage";
 import AboutUsPage from "./components/aboutUs/AboutUsPage";
 import ContactUsPage from "./components/contactUs/ContactUsPage";
+import EditOrderPage from "./components/Admin/orders/EditOrderPage";
+import UserOrderpage from "./components/userorder/UserOrderpage";
 
 function App() {
   return (
@@ -34,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/loginAdmin" element={<LoginPageAdmin />} />
         <Route path="/category" element={<Category />} />
         <Route path="/productDetail" element={<ProductDetailPage />} />
         <Route path="/shipping" element={<ShippingPage />} />
@@ -53,6 +57,8 @@ function App() {
         <Route path="/producteditform" element={<EditFormPage />} />
         <Route path="/aboutUs" element={<AboutUsPage />} />
         <Route path="/contactUs" element={<ContactUsPage />} />
+        <Route path="/orderedit" element={<EditOrderPage />} />
+        <Route path="/userOrders" element={<UserOrderpage />} />
       </Routes>
     </BrowserRouter>
   );

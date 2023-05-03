@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function DeleteOrder() {
+function EditOrders() {
   const [tableData, setTableData] = useState([]);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost/project/viewOrder.php");
+    const result = await axios.get("http://localhost/project/viewOrderNew.php");
     setTableData(result.data.phpresult);
   };
 
-  const deleteHandle = (id) => {
+  const approveHandle = (id, productid, userid) => {
     let fData = new FormData();
     fData.append("dId", id);
+    fData.append("Productid", productid);
+    fData.append("userid", userid);
+    fData.append("status", "Approve");
 
     axios({
       method: "post",
-      url: "http://localhost/project/deleteOrders.php",
+      url: "http://localhost/project/updateOrders.php",
+      data: fData,
+      config: { headers: { "Content-Type": "multipart/form-data" } },
+    });
+    window.location.reload();
+  };
+  const rejectHandle = (id, productid, userid) => {
+    let fData = new FormData();
+    fData.append("dId", id);
+    fData.append("Productid", productid);
+    fData.append("userid", userid);
+    fData.append("status", "Reject");
+
+    axios({
+      method: "post",
+      url: "http://localhost/project/updateOrders.php",
       data: fData,
       config: { headers: { "Content-Type": "multipart/form-data" } },
     });
@@ -36,7 +54,7 @@ function DeleteOrder() {
 
   return (
     <div className="container">
-      <div className="h2 text-center mt-2">Delete Orders</div>
+      <div className="h2 text-center mt-2">Update Orders</div>
       <div class="row g-3 align-items-center">
         <div class="col-auto">
           <label for="inputPassword6" class="col-form-label">
@@ -92,7 +110,10 @@ function DeleteOrder() {
                 Last
               </th>
               <th scope="col" className="text-center">
-                Delete
+                Approve
+              </th>
+              <th scope="col" className="text-center">
+                Reject
               </th>
             </tr>
           </thead>
@@ -112,10 +133,22 @@ function DeleteOrder() {
                 <td className="text-center">{item.last}</td>
                 <td className="text-center">
                   <button
-                    className="btn btn-danger"
-                    onClick={() => deleteHandle(item.id)}
+                    className="btn btn-primary"
+                    onClick={() =>
+                      approveHandle(item.id, item.product_id, item.user_id)
+                    }
                   >
-                    Delete
+                    Approve
+                  </button>
+                </td>
+                <td className="text-center">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() =>
+                      rejectHandle(item.id, item.product_id, item.user_id)
+                    }
+                  >
+                    Reject
                   </button>
                 </td>
               </tr>
@@ -127,4 +160,4 @@ function DeleteOrder() {
   );
 }
 
-export default DeleteOrder;
+export default EditOrders;

@@ -106,3 +106,21 @@
 .card-detail-mouse {
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .textadjust {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .button {
+    right: 30%;
+  }
+  .headingadjust {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

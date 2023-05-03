@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineClockCircle, AiOutlineMail } from "react-icons/ai";
 import { BsHouseDoor, BsTelephone } from "react-icons/bs";
 import "./contactUs.css";
 
 function ContactUs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div

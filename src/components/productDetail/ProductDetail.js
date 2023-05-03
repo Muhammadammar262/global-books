@@ -13,7 +13,6 @@ function ProductDetail() {
   const navigate = useNavigate();
   const data = location.state;
   const [tableData, setTableData] = useState([]);
-  // console.log(data);
 
   const [bName, setbName] = useState("");
   const [aName, setaName] = useState("");
@@ -73,7 +72,7 @@ function ProductDetail() {
     navigate("/productDetail", { state: id });
   };
 
-  const loadUsers2 = async (id) => {
+  const loadUsers2 = async () => {
     let fData = new FormData();
     fData.append("bName", bName);
     fData.append("aName", aName);
@@ -87,6 +86,9 @@ function ProductDetail() {
     fData.append("bsku", bsku);
     fData.append("bbarc", bbarc);
     fData.append("image", file);
+    fData.append("id", id);
+    fData.append("user_id", sessionStorage.getItem("id"));
+
     await axios({
       method: "post",
       url: "http://localhost/project/addCart.php",
@@ -96,8 +98,12 @@ function ProductDetail() {
   };
 
   const carthandle = () => {
-    loadUsers2();
-    navigate("/cart");
+    if (sessionStorage.getItem("username") !== null) {
+      loadUsers2();
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
   };
 
   const [count, setCount] = useState(1);
@@ -118,7 +124,7 @@ function ProductDetail() {
 
   return (
     <div>
-      <div className="container d-flex justify-content-between my-5">
+      <div className="container d-flex justify-content-between my-5 row row-cols-lg-2 row-cols-sm-1 row-cols-md-2 row-cols-1 g-4">
         <div className="productDetail px-4">
           <img className="" src={`/pic/${file}`} alt="" width={"100%"} />
         </div>
@@ -271,11 +277,7 @@ function ProductDetail() {
             <div class="col">
               <div class="card border-0">
                 <div className="card-img-css">
-                  <img
-                    className="card-img"
-                    src={require(`../../assests/pic/${res?.image}`)}
-                    alt=""
-                  />
+                  <img className="card-img" src={`/pic/${res?.image}`} alt="" />
                 </div>
                 <div className="button">
                   <button

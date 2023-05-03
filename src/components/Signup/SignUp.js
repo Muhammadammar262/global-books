@@ -105,7 +105,6 @@ function SignUp() {
     }
   };
 
-  console.log(passwordError);
   useEffect(() => {
     setFormValid(
       nameValid &&
@@ -151,7 +150,6 @@ function SignUp() {
       navigate("/login", { replace: true });
     }
   };
-  console.log(passwordError);
 
   const myStyle = {
     backgroundImage: `url(${backgroundImage})`,

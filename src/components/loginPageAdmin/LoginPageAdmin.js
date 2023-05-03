@@ -9,7 +9,7 @@ import { GrFacebookOption } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function LoginPage() {
+function LoginPageAdmin() {
   const [userName, setuserName] = useState("");
   const [password, setpassword] = useState("");
 
@@ -23,14 +23,14 @@ function LoginPage() {
 
       axios({
         method: "post",
-        url: "http://localhost/project/login.php",
+        url: "http://localhost/project/loginAdmin.php",
         data: fData,
         config: { headers: { "Content-Type": "multipart/form-data" } },
       }).then((result) => {
         if (result.data.result.name !== "") {
           sessionStorage.setItem("username", result.data.result.name);
           sessionStorage.setItem("id", result.data.result.id);
-          navigate("/", { state: { user: result.data } });
+          navigate("/adminHome", { state: { user: result.data } });
           window.stop();
         } else {
           alert("Invalid User");
@@ -72,10 +72,10 @@ function LoginPage() {
       <div className="col-lg-4 col-md-7 col-sm-6 col-xs-12 login-card">
         <form id="kayit-form" className="col-lg-12">
           <Link
-            to="/loginAdmin"
+            to="/login"
             className="btn btn-primary d-flex justify-content-center"
           >
-            Login As Admin
+            Login As User
           </Link>
 
           <div className="col-lg-12 logo-kapsul">
@@ -124,36 +124,10 @@ function LoginPage() {
               <BiLogInCircle className="me-1" /> Log In
             </button>
           </div>
-          <div
-            className="text-white d-flex justify-content-center align-items-center mt-2"
-            style={fontSize}
-          >
-            or login with
-          </div>
-          <div className=" d-flex justify-content-center align-items-center mt-3">
-            <button className="btn btn-danger rounded-circle d-flex justify-content-center align-items-center p-3 me-2">
-              <RiGoogleFill color="white" />
-            </button>
-            <button className="btn btn-primary rounded-circle d-flex justify-content-center align-items-center p-3 me-2">
-              <GrFacebookOption />
-            </button>
-            <button className="btn btn-info rounded-circle d-flex justify-content-center align-items-center p-3 me-2">
-              <BsTwitter />
-            </button>
-          </div>
-          <div
-            className="mt-4 text-white d-flex justify-content-center align-items-center"
-            style={fontSize}
-          >
-            Not Register Yet?
-            <Link to="/signup" className="text-decoration-none">
-              <span className="ms-2 createAccountColor">Create an account</span>
-            </Link>
-          </div>
         </form>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default LoginPageAdmin;

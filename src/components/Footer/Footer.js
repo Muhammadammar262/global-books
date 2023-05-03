@@ -45,12 +45,12 @@ function Footer() {
               </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Career
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
               <Link
@@ -61,20 +61,20 @@ function Footer() {
               </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Terms & Conditions
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -82,44 +82,44 @@ function Footer() {
           <div className="h5">Information</div>
           <div className="mt-4">
             <div>
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Shipping & Delivery
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 We buy books guide
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Returns And Exchange Policy
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Book Condition and Size
-              </a>
+              </Link>
             </div>
             <div className="mt-2">
-              <a
+              <Link
+                to="/aboutUs"
                 className="text-decoration-none text-dark companyLinks"
-                href="/"
               >
                 Site Map
-              </a>
+              </Link>
             </div>
           </div>
         </div>

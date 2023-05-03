@@ -9,6 +9,7 @@ import "./navbarwebsite.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 function NavbarWebsite() {
   const navigate = useNavigate();
@@ -26,6 +27,20 @@ function NavbarWebsite() {
       setUsername(user);
     }
   }, []);
+
+  const cartCheck = () => {
+    if (username === "Register or Login") {
+      navigate("/login");
+    } else {
+      navigate("/cart");
+    }
+  };
+
+  const logout = () => {
+    navigate("/login");
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("id");
+  };
 
   const categorySubmit = (name) => {
     navigate("/category", { state: name });
@@ -272,6 +287,7 @@ function NavbarWebsite() {
           Mugs
         </div>
       </div>
+
       <Navbar bg="light" expand="lg">
         <Container>
           <div>
@@ -291,15 +307,43 @@ function NavbarWebsite() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center">
-              <Link to="/cart" className="text-decoration-none text-dark me-3">
+              <div
+                onClick={cartCheck}
+                className="text-decoration-none text-dark me-3 cursor"
+              >
                 <AiOutlineShoppingCart size={"30px"} className="me-2" />
                 Cart
+              </div>
+              <Link
+                to="/userOrders"
+                className="text-decoration-none text-dark me-3 cursor"
+              >
+                <MdProductionQuantityLimits size={"30px"} className="me-2" />
+                Orders
               </Link>
-              <Link className="text-decoration-none text-dark" to="/login">
-                <BsFillPersonFill size={"30px"} className="me-2" />
-
-                {username}
-              </Link>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="/"
+                  id="navbarDarkDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <BsFillPersonFill size={"30px"} className="me-2" />
+                  {username}
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-light"
+                  aria-labelledby="navbarDarkDropdownMenuLink"
+                >
+                  <li>
+                    <div onClick={logout} class="dropdown-item cursor">
+                      {username === "Register or Login" ? "Login" : "Logout"}
+                    </div>
+                  </li>
+                </ul>
+              </li>
             </Nav>
           </Navbar.Collapse>
         </Container>

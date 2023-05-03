@@ -48,7 +48,7 @@ function EditCustomerForm() {
   return (
     <div className="container">
       <div className="h2 mt-3 pb-2 border-bottom text-center">
-        Update Book Details
+        Update Customer Details
       </div>
       <form>
         <div className="my-3">

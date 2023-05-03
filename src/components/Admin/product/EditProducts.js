@@ -57,6 +57,9 @@ function EditProducts() {
                 ID
               </th>
               <th scope="col" className="text-center">
+                Book Image
+              </th>
+              <th scope="col" className="text-center">
                 Book Name
               </th>
               <th scope="col" className="text-center">
@@ -80,6 +83,9 @@ function EditProducts() {
             {filteredData.map((res) => (
               <tr key={res.id}>
                 <td className="text-center">{res.id}</td>
+                <td>
+                  <img src={`/pic/${res.image}`} alt="" width={"100em"} />
+                </td>
                 <td className="text-center">{res.name}</td>
                 <td className="text-center">{res.category}</td>
                 <td className="text-center">{res.author}</td>

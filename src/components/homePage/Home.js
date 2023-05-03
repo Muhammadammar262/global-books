@@ -20,14 +20,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
   const [tableData, setTableData] = useState([]);
+  const [NewArrivaltableData, setNewArrivalTableData] = useState([]);
   const navigate = useNavigate();
-  // const [id1, setid1] = useState(0);
 
   const loadUsers = async () => {
     const result = await axios.get(
       "http://localhost/project/view5BestSeller.php"
     );
     setTableData(result.data.phpresult);
+    const result1 = await axios.get(
+      "http://localhost/project/view5NewArrivals.php"
+    );
+    setNewArrivalTableData(result1.data.phpresult);
   };
 
   const updateHandle = (id) => {
@@ -58,6 +62,8 @@ function Home() {
     fData.append("bsku", userData.sku);
     fData.append("bbarc", userData.barcode);
     fData.append("image", userData.image);
+    fData.append("id", userData.id);
+    fData.append("user_id", sessionStorage.getItem("id"));
     await axios({
       method: "post",
       url: "http://localhost/project/addCart.php",
@@ -67,8 +73,12 @@ function Home() {
   };
 
   const carthandle = (id) => {
-    loadUsers1(id);
-    navigate("/cart");
+    if (sessionStorage.getItem("username") !== null) {
+      loadUsers1(id);
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div>
@@ -121,26 +131,26 @@ function Home() {
         </div>
       </div>
       <div className="d-flex container-fluid p-2 row row-col-lg-4 row-col-md-2">
-        <div className="text-uppercase fw-bold col d-flex align-items-center">
+        <div className="text-uppercase fw-bold col d-flex align-items-center textadjust">
           <TbTruckDelivery size={"38px"} className="me-3" />
           Cash On Delivery
         </div>
-        <div className="text-uppercase fw-bold col d-flex align-items-center">
+        <div className="text-uppercase fw-bold col d-flex align-items-center textadjust">
           <GiWorld size={"34px"} className="me-3" />
           WORLD WIDE SHIPPING*
         </div>
-        <div className="text-uppercase fw-bold col d-flex align-items-center">
+        <div className="text-uppercase fw-bold col d-flex align-items-center textadjust">
           <TbFileCertificate size={"38px"} className="me-3" />
           IMPORTED & LOCAL BOOKS
         </div>
-        <div className="text-uppercase fw-bold col d-flex align-items-center">
+        <div className="text-uppercase fw-bold col d-flex align-items-center textadjust">
           <BsFillStarFill size={"32px"} className="me-3" />
           50+ GENRES & 100K+ Titles
         </div>
       </div>
 
-      <div className="container pt-3">
-        <div className="text-uppercase h2">BESTSELLER</div>
+      <div className="container pt-3 headingadjust">
+        <div className="text-uppercase h2">BEST SELLER</div>
         <div className="text-secondary fs-5">Top seller in the week</div>
       </div>
 
@@ -176,11 +186,11 @@ function Home() {
         ))}
       </div>
 
-      <div className="container pt-3">
+      <div className="container pt-3 headingadjust">
         <div className="text-uppercase h2">New Arrivals</div>
       </div>
       <div class="d-flex row row-cols-lg-5 row-cols-sm-1 row-cols-md-3 row-cols-1 g-4 m-4">
-        {tableData.map((res) => (
+        {NewArrivaltableData.map((res) => (
           <div class="col">
             <div class="card border-0">
               <div className="card-img-css">
@@ -224,102 +234,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="container my-4 d-flex justify-content-between">
-        <div className="afterNewArrival2">
-          <Link to="/productDetail">
-            <img src={afterNewArrival2} alt="" width={"100%"} />
-          </Link>
-          <div className="text-center my-3">
-            <Link
-              to="/productDetail"
-              className="text-decoration-none h4 text-dark"
-            >
-              The Raw Shark Texts
-            </Link>
-          </div>
-          <div className="text-center text-secondary">
-            Welcome to UnspaceEric Sanderson wakes up in a place he doesn't
-            recognise, unable to remember who he is. All he has left are journal
-            entries recalling Clio, a perfect love now gone.So begins a
-            thrilling adventure that will send Eric and his cynical cat Ian on a
-            search for the Ludovician, the force that is threatening his life,
-            and Dr Trey Fidorus, the only man who knows its secrets.
-          </div>
-          <div className="d-flex align-items-center justify-content-center mt-4">
-            <Link
-              to="/cart"
-              className="d-flex align-items-center justify-content-center btn rounded-pill afterNewArrival2Button"
-            >
-              Order Now <BiRightArrowAlt size={"20px"} />
-            </Link>
-          </div>
-        </div>
-        <div className="afterNewArrival2">
-          <Link to="/productDetail">
-            <img src={afterNewArrival21} alt="" width={"100%"} />
-          </Link>
-          <div className="text-center my-3">
-            <Link
-              to="/productDetail"
-              className="text-decoration-none h4 text-dark"
-            >
-              A Court of Mist and Fury (Hardback)
-            </Link>
-          </div>
-          <div className="text-center text-secondary">
-            The stunning sequel to Sarah J. Maas' New York Times bestselling.
-            <br></br> As Feyre navigates its dark web of politics, passion, and
-            dazzling power, a greater evil looms - and she might be key to
-            stopping it. But only if she can harness her harrowing gifts, heal
-            her fractured soul, and decide how she wishes to shape her future -
-            and the future of a world cleaved in two.
-          </div>
-          <div className="d-flex align-items-center justify-content-center mt-4">
-            <Link
-              to="/cart"
-              className="d-flex align-items-center justify-content-center btn rounded-pill afterNewArrival2Button2"
-            >
-              Order Now <BiRightArrowAlt size={"20px"} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="afterNewArrival2">
-          <Link to="/productDetail">
-            <img src={afterNewArrival22} alt="" width={"100%"} />
-          </Link>
-          <div className="text-center my-3">
-            <Link
-              to="/productDetail"
-              className="text-decoration-none h4 text-dark"
-            >
-              The Pocket Encyclopedia of Aggravation: The Counterintuitive
-              Approach to De-stressing
-            </Link>
-          </div>
-          <div className="text-center text-secondary">
-            Every time your mobile phone rings, it's an automated PPI call...
-            <br></br>
-            You've forgotten one of your million different internet passwords...
-            <br></br>
-            Once again, you're stuck in the slowest lane at the supermarket...
-            <br></br>
-            This book investigates 97 day-ruining events, slap-in-the-face
-            moments and everyday aggravations, and explains why these things
-            irritate us quite so much.
-          </div>
-          <div className="d-flex align-items-center justify-content-center mt-4">
-            <Link
-              to="/cart"
-              className="d-flex align-items-center justify-content-center btn rounded-pill afterNewArrival2Button"
-            >
-              Order Now <BiRightArrowAlt size={"20px"} />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="container pt-3">
+      <div className="container pt-3 headingadjust">
         <div className="text-uppercase h2">International Bestseller</div>
         <div className="text-secondary fs-5">International Bestseller</div>
       </div>
@@ -356,14 +271,14 @@ function Home() {
         ))}
       </div>
 
-      <div className="my-5 container d-flex justify-content-between">
+      <div className="my-5 container d-flex justify-content-between row row-cols-lg-2 row-cols-sm-1 row-cols-md-2 row-cols-1 ">
         <div className="aboutUsPic">
           <img src={aboutUsPic} alt="" width={"100%"} />
         </div>
         <div className="aboutUs d-flex align-items-center">
           <div>
-            <div className="h1">About Us</div>
-            <div className="text-secondary">
+            <div className="h1 ps-2">About Us</div>
+            <div className="ps-2 text-secondary">
               Established by a group of dedicated book lovers. Global book's
               mission is to create highly knowledgeable, intellectual, and
               well-read Pakistani communities throughout the nation by
@@ -374,7 +289,7 @@ function Home() {
               to go through the books and buy or sell easily from our online
               store.
             </div>
-            <div className="text-secondary mt-5">
+            <div className="ps-2 text-secondary mt-3">
               We offer a huge collection of books in the diverse category of
               Fiction, Non-fiction, Biographies, History, Religions, Self -Help,
               and Children. We also sell vast collections of Investments and
@@ -383,7 +298,7 @@ function Home() {
               across the country. Besides this, we also offer a large collection
               of E-Books at very fair pricing.
             </div>
-            <div className="text-secondary mt-5">
+            <div className="ps-2 text-secondary mt-3">
               we are disposed to provide exciting offers and pleasant discounts
               on our books.
             </div>
