@@ -9,7 +9,6 @@ function EditCustomer() {
   const loadUsers = async () => {
     const result = await axios.get("http://localhost/project/viewCustomer.php");
     setTableData(result.data.phpresult);
-    console.log(result.data);
   };
 
   useEffect(() => {

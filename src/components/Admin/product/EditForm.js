@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function EditForm() {
+  const navigate = useNavigate();
+
   const location = useLocation();
   const data = location.state;
   const [bName, setbName] = useState("");
@@ -65,6 +67,7 @@ function EditForm() {
       data: fData,
       config: { headers: { "Content-Type": "multipart/form-data" } },
     });
+    navigate("/productview");
   }
 
   return (
@@ -81,6 +84,7 @@ function EditForm() {
             placeholder="Enter Book Name"
             value={bName}
             onChange={(e) => setbName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -91,6 +95,7 @@ function EditForm() {
             placeholder="Enter Author Name"
             value={aName}
             onChange={(e) => setaName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -101,6 +106,7 @@ function EditForm() {
             placeholder="Enter Number of pages"
             value={npb}
             onChange={(e) => setnpb(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -111,6 +117,7 @@ function EditForm() {
             placeholder="Enter Publisher Name"
             value={pName}
             onChange={(e) => setpName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -121,6 +128,7 @@ function EditForm() {
             placeholder="Enter Publication Year"
             value={py}
             onChange={(e) => setpy(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -131,6 +139,7 @@ function EditForm() {
             placeholder="Enter Book Price"
             value={bp}
             onChange={(e) => setbp(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -152,6 +161,7 @@ function EditForm() {
             placeholder="Enter Book Category"
             value={bc}
             onChange={(e) => setbc(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -162,6 +172,7 @@ function EditForm() {
             placeholder="Enter Book Quantity"
             value={bq}
             onChange={(e) => setbq(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -172,6 +183,7 @@ function EditForm() {
             placeholder="Enter Book SKU Number"
             value={bsku}
             onChange={(e) => setbsku(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -182,6 +194,7 @@ function EditForm() {
             placeholder="Enter Book Barcode"
             value={bbarc}
             onChange={(e) => setbarc(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">
@@ -191,6 +204,7 @@ function EditForm() {
             type="file"
             id="formFile"
             onChange={(event) => setFile(event.target.files[0])}
+            required
           />
         </div>
         <button

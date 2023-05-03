@@ -68,6 +68,7 @@ function Shipping() {
                   placeholder="Email or mobile phone number"
                   value={email}
                   onChange={(e) => setemail(e.target.value)}
+                  required
                 />
               </div>
 
@@ -81,6 +82,7 @@ function Shipping() {
                     placeholder="First name"
                     value={first}
                     onChange={(e) => setfirst(e.target.value)}
+                    required
                   />
                 </div>
                 <div class="col">
@@ -90,6 +92,7 @@ function Shipping() {
                     placeholder="Last name"
                     value={last}
                     onChange={(e) => setlast(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -101,6 +104,7 @@ function Shipping() {
                   placeholder="Address"
                   value={address}
                   onChange={(e) => setaddress(e.target.value)}
+                  required
                 />
               </div>
               <div class="form-group mt-2">
@@ -110,6 +114,7 @@ function Shipping() {
                   placeholder="Country"
                   value={country}
                   onChange={(e) => setcountry(e.target.value)}
+                  required
                 />
               </div>
 
@@ -121,6 +126,7 @@ function Shipping() {
                     placeholder="City"
                     value={city}
                     onChange={(e) => setcity(e.target.value)}
+                    required
                   />
                 </div>
                 <div class="col">
@@ -130,6 +136,7 @@ function Shipping() {
                     placeholder="Postal Code"
                     value={postal}
                     onChange={(e) => setpostal(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -141,6 +148,7 @@ function Shipping() {
                   placeholder="Phone"
                   value={phone}
                   onChange={(e) => setphone(e.target.value)}
+                  required
                 />
               </div>
 

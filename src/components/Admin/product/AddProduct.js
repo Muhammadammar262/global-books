@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
+  const navigate = useNavigate();
+
   const [bName, setbName] = useState("");
   const [aName, setaName] = useState("");
   const [npb, setnpb] = useState();
@@ -36,6 +39,8 @@ function AddProduct() {
       data: fData,
       config: { headers: { "Content-Type": "multipart/form-data" } },
     });
+
+    navigate("/productview");
   }
 
   return (
@@ -50,6 +55,7 @@ function AddProduct() {
             placeholder="Enter Book Name"
             value={bName}
             onChange={(e) => setbName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -60,6 +66,7 @@ function AddProduct() {
             placeholder="Enter Author Name"
             value={aName}
             onChange={(e) => setaName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -70,6 +77,7 @@ function AddProduct() {
             placeholder="Enter Number of pages"
             value={npb}
             onChange={(e) => setnpb(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -80,6 +88,7 @@ function AddProduct() {
             placeholder="Enter Publisher Name"
             value={pName}
             onChange={(e) => setpName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -90,6 +99,7 @@ function AddProduct() {
             placeholder="Enter Publication Year"
             value={py}
             onChange={(e) => setpy(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -100,6 +110,7 @@ function AddProduct() {
             placeholder="Enter Book Price"
             value={bp}
             onChange={(e) => setbp(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -110,6 +121,7 @@ function AddProduct() {
               placeholder="Enter Book Description"
               value={bd}
               onChange={(e) => setbd(e.target.value)}
+              required
             ></textarea>
           </div>
         </div>
@@ -121,6 +133,7 @@ function AddProduct() {
             placeholder="Enter Book Category"
             value={bc}
             onChange={(e) => setbc(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -131,6 +144,7 @@ function AddProduct() {
             placeholder="Enter Book Quantity"
             value={bq}
             onChange={(e) => setbq(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -141,6 +155,7 @@ function AddProduct() {
             placeholder="Enter Book SKU Number"
             value={bsku}
             onChange={(e) => setbsku(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -151,6 +166,7 @@ function AddProduct() {
             placeholder="Enter Book Barcode"
             value={bbarc}
             onChange={(e) => setbarc(e.target.value)}
+            required
           />
         </div>
         <div className="mb-3">

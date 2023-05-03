@@ -107,29 +107,13 @@ function SignUp() {
 
   useEffect(() => {
     setFormValid(
-      nameValid &&
-        emailValid &&
-        passwordValid &&
-        conPasswordValid &&
-        phoneValid &&
-        email !== "" &&
+      email !== "" &&
         password !== "" &&
         phone !== "" &&
         name !== "" &&
         conpassword !== ""
     );
-  }, [
-    nameValid,
-    emailValid,
-    passwordValid,
-    conPasswordValid,
-    phoneValid,
-    email,
-    password,
-    phone,
-    name,
-    conpassword,
-  ]);
+  }, [email, password, phone, name, conpassword]);
 
   const handleSubmit = () => {
     if (password !== conpassword) {

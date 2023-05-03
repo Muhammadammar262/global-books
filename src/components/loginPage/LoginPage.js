@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../loginPage/loginPage.css";
 import { MdEmail } from "react-icons/md";
 import { RiGoogleFill, RiLockPasswordFill } from "react-icons/ri";
@@ -12,7 +12,25 @@ import axios from "axios";
 function LoginPage() {
   const [userName, setuserName] = useState("");
   const [password, setpassword] = useState("");
+  const [emailValid, setEmailValid] = useState(true);
+  const [emailError, setEmailError] = useState("null");
+  const [formValid, setFormValid] = useState(true);
 
+  const validateEmail = () => {
+    if (userName === "") {
+      setEmailError("Please Enter Email Address");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userName)) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setEmailValid(emailRegex.test(userName));
+      setEmailError("Please Enter a Valid Email Address");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  useEffect(() => {
+    setFormValid(userName !== "");
+  }, [userName]);
   const navigate = useNavigate();
 
   const checkAdmin = () => {
@@ -87,6 +105,7 @@ function LoginPage() {
               type="text"
               value={userName}
               onChange={handleUserNameInputChange}
+              onBlur={validateEmail}
               required
             />
             <span className="highlight"></span>
@@ -98,6 +117,7 @@ function LoginPage() {
               </i>
             </label>
           </div>
+          {!emailValid && <span className="error">{emailError}</span>}
 
           <div className="group">
             <input
@@ -120,6 +140,7 @@ function LoginPage() {
               onClick={checkAdmin}
               style={buttonSize}
               className="btn buttonColor d-flex justify-content-center align-items-center"
+              disabled={!formValid}
             >
               <BiLogInCircle className="me-1" /> Log In
             </button>

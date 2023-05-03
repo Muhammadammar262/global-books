@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./editcustomerform.css";
 
 function EditCustomerForm() {
+  const navigate = useNavigate();
+
   const location = useLocation();
   const data = location.state;
   const [id, setid] = useState(0);
@@ -43,6 +45,7 @@ function EditCustomerForm() {
       data: fData,
       config: { headers: { "Content-Type": "multipart/form-data" } },
     });
+    navigate("/customerview");
   }
 
   return (
@@ -59,6 +62,7 @@ function EditCustomerForm() {
             placeholder="Enter Book Name"
             value={Name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -69,6 +73,7 @@ function EditCustomerForm() {
             placeholder="Enter Author Name"
             value={email}
             onChange={(e) => setemail(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -79,6 +84,7 @@ function EditCustomerForm() {
             placeholder="Enter Number of pages"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
+            required
           />
         </div>
         <div className="my-3">
@@ -89,6 +95,7 @@ function EditCustomerForm() {
             placeholder="Enter Publisher Name"
             value={phone}
             onChange={(e) => setphone(e.target.value)}
+            required
           />
         </div>
 
